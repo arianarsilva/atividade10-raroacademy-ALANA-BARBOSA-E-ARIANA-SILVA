@@ -8,12 +8,11 @@ Test Teardown     Teardown
 *** Test Cases ***
 
 Cadastro de vários produtos
-    [Template]    Adicionar produtos
-    
+    [Template]    Cadastro de vários produtos
     FOR    ${counter}    IN RANGE     1
-        Galaxy Tab S9 FE        20    3700
-        Fone de ouvido gamer    20    3700
-        Teclado Mecânico        15    2300
+        001    Galaxy Tab S9 FE           un        20     5000    258
+        002    Fone de ouvido gamer       un        20     200     258
+        003    Teclado Mecânico           un        20     5000    258
     END
 
 Validar funcionalidade de deletar produto
