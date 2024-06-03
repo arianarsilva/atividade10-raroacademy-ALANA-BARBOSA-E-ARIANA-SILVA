@@ -26,4 +26,9 @@ Visualiza elemento
     [Arguments]                      ${elemento}
     Wait Until Element Is Visible    ${elemento}
 
-
+Verifica se os elementos estão visíveis e habilitados
+    [Arguments]    @{elementos}
+    FOR    ${elemento}    IN    @{elementos}
+        Element Should Be Visible    ${elemento}
+        Element Should Be Enabled    ${elemento}
+    END
