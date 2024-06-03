@@ -8,7 +8,7 @@ Resource    ../utils/config.robot
 
 ${BTN_NOVO_CADASTRO}                      xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/Button1"]
 ${BTN_VALIDADE}                           xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/data"]
-${BTN_SALVAR}                             xpath=//android.widget.Button[contains(@text,"SALVAR")]
+${BTN_SALVAR}                             xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_gravar_assunto"]
 ${BTN_DELETAR}                            xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/deletar"]
 ${BTN_EDITAR}                             xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/editar"]
 ${BTN_ENTRADA}                            xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/entrada"]
@@ -16,7 +16,6 @@ ${BTN_SAIDA}                              xpath=//android.widget.Button[@resourc
 ${BTN_MENU}                               xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/Button3"]
 ${BTN_DELETAR_SIM}                        xpath=//android.widget.Button[@resource-id="android:id/button1"]
 ${BTN_DELETAR_NAO}                        xpath=//android.widget.Button[@resource-id="android:id/button2"]
-
 
 ${TXT_CONFIRMA_EXCLUSAO}                  xpath=//android.widget.TextView[contains(@text,"Confirma exclusão?")]  
 ${TXT_CADASTRO_CODIGO}                    xpath=//android.widget.TextView[@text="Código"]
@@ -29,7 +28,6 @@ ${TXT_CADASTRO_DE_PRODUTOS}               xpath=//android.widget.TextView[contai
 ${TXT_ID}                                 xpath=//android.widget.TextView[@text="ID"]
 ${TXT_CODIGO}                             xpath=//android.widget.TextView[@text="Código"]
 ${TXT_DESCRICAO}                          xpath=//android.widget.TextView[@text="Descrição"]
-
 
 ${INPUT_CODIGO}                           xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_codigo"]
 ${INPUT_DESCRICAO}                        xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_descricao"]
@@ -54,25 +52,40 @@ E preencher todos os campos disponíveis com informações válidas
     Wait Until Element Is Visible        ${INPUT_CODIGO}
     Input Text        ${INPUT_CODIGO}         001
     Input Text        ${INPUT_DESCRICAO}      Fone De Ouvido Gamer
-    Input Text        ${INPUT_UNIDADE}        05
+    Input Text        ${INPUT_UNIDADE}        un
     Input Text        ${INPUT_QUANTIDADE}     10
     Input Text        ${INPUT_VAL_UNIT}       150,00
     Input Text        ${INPUT_LOTE}           12345
-
-Então será possível cadastrar um novo produto
-    Click Element    ${BTN_SALVAR}
+    Click Element     ${BTN_SALVAR}
     Wait Until Element Is Visible    ${TXT_CADASTRO_DE_PRODUTOS}
 
+Então será possível cadastrar um novo produto
+    Click Element     ${BTN_SALVAR}
+    Wait Until Element Is Visible    ${TXT_CADASTRO_DE_PRODUTOS}
 
-Cadastrar vários produtos no app
-    [Arguments]    ${codigo}    ${descricao}    ${unidade}    ${quantidade}    ${valor}    ${lote}
-    Wait Until Element Is Visible    ${BTN_NOVO_CADASTRO}
-    Click Element     ${BTN_NOVO_CADASTRO}
-    Wait Until Element Is Visible        ${INPUT_CODIGO}
-    Input Text        ${INPUT_CODIGO}         ${codigo}
-    Input Text        ${INPUT_DESCRICAO}      ${descricao}
-    Input Text        ${INPUT_UNIDADE}        ${unidade}
-    Input Text        ${INPUT_QUANTIDADE}     ${quantidade}
-    Input Text        ${INPUT_VAL_UNIT}       ${valor}
-    Input Text        ${INPUT_LOTE}           ${lote}
-    Click Element     ${btnSalvar}
+Adicionar produtos
+    [Arguments]    ${descri}    ${qtd}    ${valunit}
+    Wait Until Element Is Visible      br.com.pztec.estoque:id/Button1
+    Click Element                      br.com.pztec.estoque:id/Button1
+    Wait Until Element Is Visible      br.com.pztec.estoque:id/txt_descricao
+    Input Text                         br.com.pztec.estoque:id/txt_descricao      ${descri}
+    Input Text                         br.com.pztec.estoque:id/txt_quantidade     ${qtd}
+    Input Text                         br.com.pztec.estoque:id/txt_valunit        ${valunit}
+    Click Element                      ${BTN_SALVAR}
+    Wait Until Element Is Visible      android:id/search_button
+    Element Should Contain Text        //android.widget.TextView[@text='${descri}']    ${descri}
+
+Quando acessar a funcionlidade de deletar um produto
+    Espera o elemento e faz o clique    ${BTN_DELETAR}
+
+
+E confirmar exclusão
+    Wait Until Element Is Visible        ${TXT_CONFIRMA_EXCLUSAO}
+    Espera o elemento e faz o clique     ${BTN_DELETAR_SIM}
+
+Então o produto será excluído do estoque
+    Element Should Not Contain Text    ${}    expected
+
+E não confirmar exclusão
+    Wait Until Element Is Visible        ${TXT_CONFIRMA_EXCLUSAO}
+    Espera o elemento e faz o clique     ${BTN_DELETAR_NAO}
