@@ -1,5 +1,5 @@
 robotframework
 robotframework-appiumlibrary
 robotframework-faker
-Appium_Python-Client==4.0.0
+Appium_Python-Client<4.0.0
 selenium==4.12
