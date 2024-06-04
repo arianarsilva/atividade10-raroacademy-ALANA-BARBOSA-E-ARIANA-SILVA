@@ -81,7 +81,8 @@ E não confirmar exclusão
     Espera o elemento e faz o clique     ${BTN_DELETAR_NAO}
 
 Então o produto será ainda estará visível na página do estoque
-    Element Should Contain Text          ${PRODUTOS_PAGE}    Nintendo
+    Wait Until Element Is Visible        ${FIELD_DESCRICAO}
+    Element Should Contain Text          ${FIELD_DESCRICAO}    Nintendo
 
 Quando acessar a funcionalidade de edição de cadastro
     Espera o elemento e faz o clique    ${BTN_EDITAR}
@@ -134,9 +135,11 @@ Quando acessar a funcionalidade de saída de produtos
     Espera o elemento e faz o clique    ${BTN_SAIDA}
 
 E inserir as informações de saída de estoque
+    Wait Until Element Is Visible    ${INPUT_SAIDA_ESTOQUE}
     Input Text    ${INPUT_SAIDA_ESTOQUE}       4
     Input Text    ${INPUT_MOTIVO}              SAÍDA DE ESTOQUE
     Input Text    ${INPUT_DOC}                 123
+
 Então será possível ver a quantidade do produto atualizada com a saída
     Wait Until Element Is Visible     ${TXT_QUANTIDADE}
     Element Attribute Should Match    ${TXT_QUANTIDADE}    text    6.0
@@ -150,8 +153,10 @@ Quando acessar funcionalidade de pesquisa
     Espera o elemento e faz o clique    ${BTN_BUSCA}
 
 E inserir a a descrição do produto
-    Input Text    ${INPUT_LOCALIZAR}    Headset
+    Wait Until Element Is Visible    ${INPUT_LOCALIZAR}
+    Input Text                       ${INPUT_LOCALIZAR}    Headset
     Press Keycode    66
 
 Então será possível encontrar o produto
+    Wait Until Element Is Visible     ${FIELD_DESCRICAO}
     Element Should Contain Text       ${FIELD_DESCRICAO}    Headset
