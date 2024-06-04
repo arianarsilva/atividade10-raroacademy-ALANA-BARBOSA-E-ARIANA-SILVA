@@ -16,6 +16,7 @@ ${BTN_SAIDA}                              id=br.com.pztec.estoque:id/saida
 ${BTN_DELETAR_SIM}                        xpath=//android.widget.Button[@resource-id="android:id/button1"]
 ${BTN_DELETAR_NAO}                        xpath=//android.widget.Button[@resource-id="android:id/button2"]
 ${BTN_SALVAR2}                            id=br.com.pztec.estoque:id/btn_salvar
+${BTN_BUSCA}                              id=android:id/search_button
 
 ${TXT_CONFIRMA_EXCLUSAO}                  xpath=//android.widget.TextView[contains(@text,"Confirma exclusão?")]  
 ${TXT_CADASTRO_CODIGO}                    xpath=//android.widget.TextView[@text="Código"]
@@ -30,6 +31,7 @@ ${TXT_CODIGO}                             xpath=//android.widget.TextView[@text=
 ${TXT_DESCRICAO}                          xpath=//android.widget.TextView[@text="Descrição"]
 ${TXT_QUANTIDADE}                         xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/txt_quantidade"]
 
+${INPUT_LOCALIZAR}                        id=android:id/search_src_text
 ${INPUT_CODIGO}                           xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_codigo"]
 ${INPUT_DESCRICAO}                        xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_descricao"]
 ${INPUT_UNIDADE}                          xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_unidade"]
@@ -138,3 +140,18 @@ E inserir as informações de saída de estoque
 Então será possível ver a quantidade do produto atualizada com a saída
     Wait Until Element Is Visible     ${TXT_QUANTIDADE}
     Element Attribute Should Match    ${TXT_QUANTIDADE}    text    6.0
+
+Dado que o usuário está na lista de produtos
+    Cadastro de vários produtos          004    Nintendo    un    10    5000    369
+    Cadastro de vários produtos          004    Headset    un    10    5000    369
+    Cadastro de vários produtos          004    Playstation 2    un    10    5000    369
+
+Quando acessar funcionalidade de pesquisa
+    Espera o elemento e faz o clique    ${BTN_BUSCA}
+
+E inserir a a descrição do produto
+    Input Text    ${INPUT_LOCALIZAR}    Headset
+    Press Keycode    66
+
+Então será possível encontrar o produto
+    Element Should Contain Text       ${FIELD_DESCRICAO}    Headset

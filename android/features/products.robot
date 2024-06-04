@@ -53,3 +53,9 @@ Deve ser possível registrar a saída de produtos do estoque
     E inserir as informações de saída de estoque
     E salvar operação
     Então será possível ver a quantidade do produto atualizada com a saída
+
+Deve ser possível pesquisar um produto cadastrado
+    Dado que o usuário está na lista de produtos
+    Quando acessar funcionalidade de pesquisa
+    E inserir a a descrição do produto
+    Então será possível encontrar o produto
