@@ -45,6 +45,8 @@ Então será possível visualizar as opções para gerar relatórios
 E selecionar a opção Inventário de estoque
     Click Element    ${RELATORIO_INVENTARIO}
     Wait Until Element Is Visible    ${RELATORIO_GERAR_PDF}
+    Element Should Contain Text    ${RELATORIO_TITULO}    Inventário de estoque
+    Element Should Contain Text    ${RELATORIO_DATA_ARQV}    inventario.pdf
 
 Então será possível gerar PDF do relatório
     Click Element    ${RELATORIO_GERAR_PDF}
@@ -63,6 +65,8 @@ E enviar o PDF do relatório no aplicativo de escolha
 E selecionar a opção Entradas no estoque
     Click Element    ${RELATORIO_ENTRADAS}
     Wait Until Element Is Visible    ${RELATORIO_GERAR_PDF}
+    Element Should Contain Text    ${RELATORIO_TITULO}    Entradas no estoque
+    Element Should Contain Text    ${RELATORIO_DATA_ARQV}    relatentrada.pdf
 
 E definir as datas desejadas
     Click Element    ${RELATORIO_DATA_INICIAL}
@@ -85,3 +89,9 @@ E a mensagem será fechada ao clicar em OK
     Click Element    ${RELATORIO_OK_MSG}
     Wait Until Page Does Not Contain Element    ${RELATORIO_JANELA_MSG}
 
+E selecionar a opção Saídas do estoque
+    Click Element    ${RELATORIO_SAIDAS}
+    Wait Until Element Is Visible    ${RELATORIO_GERAR_PDF}
+    Element Should Contain Text    ${RELATORIO_TITULO}    Saídas do estoque
+    Element Should Contain Text    ${RELATORIO_DATA_ARQV}    relatsaida.pdf
+    

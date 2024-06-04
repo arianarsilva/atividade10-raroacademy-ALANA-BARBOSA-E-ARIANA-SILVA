@@ -49,3 +49,26 @@ Test Teardown     Teardown
     E tentar gerar relatório
     Então a mensagem "Por favor selecione um período de datas." será exibida
     E a mensagem será fechada ao clicar em OK
+7- Gerar e visualizar relatório de saídas do estoque
+    Dado que o usuário acessou o Menu
+    Quando acessar a funcionalidade Relatório
+    E selecionar a opção Saídas do estoque
+    E definir as datas desejadas
+    Então será possível gerar PDF do relatório
+    E visualizar o PDF do relatório no aplicativo de escolha
+
+8- Gerar e encaminhar relatório de saídas do estoque
+    Dado que o usuário acessou o Menu
+    Quando acessar a funcionalidade Relatório
+    E selecionar a opção Saídas do estoque
+    E definir as datas desejadas
+    Então será possível gerar PDF do relatório
+    E enviar o PDF do relatório no aplicativo de escolha
+
+9- Não deve ser possível gerar relatório de saídas do estoque sem definir datas
+    Dado que o usuário acessou o Menu
+    Quando acessar a funcionalidade Relatório
+    E selecionar a opção Saídas do estoque
+    E tentar gerar relatório
+    Então a mensagem "Por favor selecione um período de datas." será exibida
+    E a mensagem será fechada ao clicar em OK
