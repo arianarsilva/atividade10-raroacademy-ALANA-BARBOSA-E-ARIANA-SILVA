@@ -13,7 +13,6 @@ ${BTN_DELETAR}                            xpath=//android.widget.Button[@resourc
 ${BTN_EDITAR}                             xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/editar"]
 ${BTN_ENTRADA}                            xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/entrada"]
 ${BTN_SAIDA}                              id=br.com.pztec.estoque:id/saida
-${BTN_MENU}                               xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/Button3"]
 ${BTN_DELETAR_SIM}                        xpath=//android.widget.Button[@resource-id="android:id/button1"]
 ${BTN_DELETAR_NAO}                        xpath=//android.widget.Button[@resource-id="android:id/button2"]
 ${BTN_SALVAR2}                            id=br.com.pztec.estoque:id/btn_salvar

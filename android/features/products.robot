@@ -53,5 +53,3 @@ Deve ser possível registrar a saída de produtos do estoque
     E inserir as informações de saída de estoque
     E salvar operação
     Então será possível ver a quantidade do produto atualizada com a saída
-
-
