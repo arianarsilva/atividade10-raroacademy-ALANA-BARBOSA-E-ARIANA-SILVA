@@ -18,6 +18,9 @@ ${TXT_INFO}                    id=br.com.pztec.estoque:id/textView4
 ${TXT_RESTORE_FILE}            id=android:id/alertTitle
 ${TXT_RESTAURAR}               id=br.com.pztec.estoque:id/textView3
 
+${PASTA_RESTORE}               xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Estoque"]
+${ARQUIVO_RESTORE}             xpath=//android.widget.TextView[contains(@text,'APP')][last()]
+
 *** Keywords ***
 Dado que o usuário acessou o botão Menu
     Espera o elemento e faz o clique           ${BTN_MENU}
@@ -46,5 +49,7 @@ E clicar em selecionar arquivo
     Espera o elemento e faz o clique    ${BTN_RESTORE_PROCURAR}
 
 Então o sistema irá direcionar para os arquivos do device
-    Wait Until Element Is Visible    ${TXT_RESTORE_FILE}
+    Wait Until Element Is Visible        ${TXT_RESTORE_FILE}
+    Espera o elemento e faz o clique     ${PASTA_RESTORE}
+    Wait Until Element Is Visible        ${ARQUIVO_RESTORE}
     
