@@ -45,7 +45,7 @@ Test Teardown     Teardown
 
 6- Deve ser possível exportar dados de Grupos de produtos com sucesso
     Dado que o usuário adicionou um grupo de produtos
-    Quando acessar a funcionalidade Exportar dados
+    Quando acessar a seção Exportar dados
     E gerar uma exportação
     Então será possível visualizar a mensagem de sucesso
     E o arquivo de exportação de grupos será gerado
