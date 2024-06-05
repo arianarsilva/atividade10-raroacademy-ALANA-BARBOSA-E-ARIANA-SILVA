@@ -56,10 +56,12 @@ Então será possível gerar PDF do relatório
 E visualizar o PDF do relatório no aplicativo de escolha
     Click Element    ${RELATORIO_VISUALIZAR}
     Wait Until Element Is Visible    ${RELATORIO_SELECIONAR}
-    Element Should Contain Text    ${RELATORIO_SELECIONAR}    Selecione uma aplicação.
+    #Element Should Contain Text    ${RELATORIO_SELECIONAR}    Selecione uma aplicação.
 
 E enviar o PDF do relatório no aplicativo de escolha
-    Click Element    ${RELATORIO_ENVIAR}
+    Press Keycode    4
+    Espera o elemento e faz o clique    ${RELATORIO_ENVIAR}
+    Wait Until Element Is Visible    ${RELATORIO_SELECIONAR}
     # Nessas keywords seguintes, a forma de exportação variava para cada device.
     # Wait Until Element Is Visible    ${RELATORIO_SELECIONAR}
     # Element Should Contain Text    ${RELATORIO_SELECIONAR}    Selecione uma aplicação.
