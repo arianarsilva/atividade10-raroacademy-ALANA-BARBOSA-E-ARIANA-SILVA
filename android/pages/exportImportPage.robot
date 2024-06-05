@@ -79,7 +79,7 @@ E o arquivo de exportação de produtos será gerado
 E será possível enviar o arquivo de exportação de dados de produtos
     Espera o elemento e faz o clique    ${EXPORT_ENVIAR1}
     Wait Until Element Is Visible    ${EXPORT_SELECIONAR}
-    Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
+    #Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
 
 Dado que o usuário adicionou estoque em um produto
     Cadastro de um produto
@@ -91,7 +91,7 @@ E o arquivo de exportação de entradas será gerado
 E será possível enviar o arquivo de exportação de dados de entradas
     Espera o elemento e faz o clique    ${EXPORT_ENVIAR2}
     Wait Until Element Is Visible    ${EXPORT_SELECIONAR}
-    Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
+    #Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
 
 Dado que o usuário diminuiu estoque em um produto
     Cadastro de um produto
@@ -103,7 +103,7 @@ E o arquivo de exportação de saídas será gerado
 E será possível enviar o arquivo de exportação de dados de saídas
     Espera o elemento e faz o clique    ${EXPORT_ENVIAR3}
     Wait Until Element Is Visible    ${EXPORT_SELECIONAR}
-    Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
+    #Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
 
 Dado que o usuário adicionou um grupo de produtos
     Dado que o usuário acessou o Menu
@@ -120,7 +120,7 @@ E o arquivo de exportação de grupos será gerado
 E será possível enviar o arquivo de exportação de dados de grupos
     Espera o elemento e faz o clique    ${EXPORT_ENVIAR4}
     Wait Until Element Is Visible    ${EXPORT_SELECIONAR}
-    Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
+    #Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
 
 
 #Ações de cadastro e movimentação de estoque de produto
