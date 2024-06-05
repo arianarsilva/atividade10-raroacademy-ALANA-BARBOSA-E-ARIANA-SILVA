@@ -7,14 +7,14 @@ Test Teardown     Teardown
 
 *** Test Cases ***
 
-Deve ser possível realizar backup dos produtos cadastrados
+1- Deve ser possível realizar backup dos produtos cadastrados
     Dado que o usuário acessou o botão Menu
     Quando acessar a funcionalidade de backup
     E gerar um backup
     Então o sistema informará sucesso
     E será possível compartilhar backup
 
-Deve ser possível realizar restore dos produtos cadastrados
+2- Deve ser possível realizar restore dos produtos cadastrados
     Dado que o usuário acessou o botão Menu
     Quando acessar a funcionalidade de Restore
     E clicar em selecionar arquivo
