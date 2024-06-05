@@ -10,14 +10,114 @@ ${EXPORT_AD}                         xpath=//android.webkit.WebView
 ${EXPORT_FORMATO}                    xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/textView4"]
 
 ${EXPORT_GERAR_DADOS}                xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_gerar"]
-${EXPORT_ARQUIVO1}                   xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/datafileprod"]                #text= produtos.csv
-${EXPORT_ARQUIVO2}                   xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/datafileent"]                 #text= entradas.csv
-${EXPORT_ARQUIVO3}                   xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/datafilesai"]                 #text= saidas.csv
-${EXPORT_ARQUIVO4}                   xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/datafilegrupo"]               #text= grupos.csv
+${EXPORT_ARQUIVO1}                   xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/datafileprod"]
+${EXPORT_ARQUIVO2}                   xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/datafileent"]
+${EXPORT_ARQUIVO3}                   xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/datafilesai"]
+${EXPORT_ARQUIVO4}                   xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/datafilegrupo"]
 
-${EXPORT_ENVIAR1}                    xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_prod"]  #ENVIAR
+${EXPORT_ENVIAR1}                    xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_prod"]
 ${EXPORT_ENVIAR2}                    xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_ent"]
 ${EXPORT_ENVIAR3}                    xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_sai"]
 ${EXPORT_ENVIAR4}                    xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_grupo"]
+${EXPORT_SELECIONAR}                 xpath=//android.widget.TextView[@resource-id="android:id/title"]
+
+${EXPORT_JANELA_MSG}                 xpath=//android.widget.LinearLayout[@resource-id="android:id/parentPanel"]
+${EXPORT_TITULO_MSG}                 xpath=//android.widget.TextView[@resource-id="android:id/alertTitle"]
+${EXPORT_CORPO_MSG}                  xpath=//android.widget.TextView[@resource-id="android:id/message"]
+${EXPORT_OK_MSG}                     xpath=//android.widget.Button[@resource-id="android:id/button1"]
+${EXPORT_TOAST}                      xpath=//android.widget.Toast[@text="O arquivo PDF ainda não foi gerado!"]
+
+${MENU_GRUPO}                        xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_grupo"]
+${GRUPO_ADD}                         xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/addgrupo"]
+${GRUPO_INPUT}                       xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_descricao"]
+${GRUPO_SALVAR}                      xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_salvar"]
 
 *** Keywords ***
+Quando acessar a funcionalidade Exportar dados
+    Clica em botão e espera elemento ficar visível    ${MENU_EXPORT}    ${EXPORT_TELA}
+
+Então será possível visualizar as opções para exportar dados
+    Verifica se os elementos estão visíveis e habilitados     ${EXPORT_GERAR_DADOS}    ${EXPORT_ENVIAR1}    ${EXPORT_ENVIAR2}    ${EXPORT_ENVIAR3}    ${EXPORT_ENVIAR4}
+    Element Should Contain Text    ${EXPORT_TITULO}    Exportar dados
+
+E clicar no botão para gerar uma exportação
+    Clica em botão e espera elemento ficar visível    ${EXPORT_GERAR_DADOS}    ${EXPORT_JANELA_MSG}
+    Visualiza texto    ${EXPORT_TITULO_MSG}    Operação concluída!
+    Visualiza texto    ${EXPORT_CORPO_MSG}    Enviar
+    Clica em botão e espera elemento desaparecer    ${EXPORT_OK_MSG}    ${EXPORT_JANELA_MSG}
+
+Então os arquivos não serão gerados
+    Visualiza texto    ${EXPORT_ARQUIVO1}    O arquivo PDF ainda não foi gerado!
+    Visualiza texto    ${EXPORT_ARQUIVO2}    O arquivo PDF ainda não foi gerado!
+    Visualiza texto    ${EXPORT_ARQUIVO3}    O arquivo PDF ainda não foi gerado!
+    Visualiza texto    ${EXPORT_ARQUIVO4}    grupos.csv
+
+E não será possível enviar o arquivo exportado
+    Clica em botão e verifica toast    ${EXPORT_ENVIAR1}    ${EXPORT_TOAST}
+    Clica em botão e verifica toast    ${EXPORT_ENVIAR2}    ${EXPORT_TOAST}
+    Clica em botão e verifica toast    ${EXPORT_ENVIAR3}    ${EXPORT_TOAST}
+
+Dado que o usuário cadastrou um produto no sistema
+    Cadastro de um produto
+
+Quando acessar a seção Exportar dados
+    Dado que o usuário acessou o botão Menu
+    Quando acessar a funcionalidade Exportar dados
+
+E gerar uma exportação
+    Espera o elemento e faz o clique    ${EXPORT_GERAR_DADOS}
+
+Então será possível visualizar a mensagem de sucesso
+    Wait Until Element Is Visible    ${EXPORT_JANELA_MSG}
+    Visualiza texto    ${EXPORT_TITULO_MSG}    Operação concluída!
+    Visualiza texto    ${EXPORT_CORPO_MSG}    Enviar
+    Clica em botão e espera elemento desaparecer    ${EXPORT_OK_MSG}    ${EXPORT_JANELA_MSG}
+
+E o arquivo de exportação de produtos será gerado
+    Visualiza texto    ${EXPORT_ARQUIVO1}    produtos.csv
+
+E será possível enviar o arquivo de exportação de dados de produtos
+    Espera o elemento e faz o clique    ${EXPORT_ENVIAR1}
+    Wait Until Element Is Visible    ${EXPORT_SELECIONAR}
+    Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
+
+Dado que o usuário adicionou estoque em um produto
+    Cadastro de um produto
+    Entrada de um produto
+
+E o arquivo de exportação de entradas será gerado
+    Visualiza texto    ${EXPORT_ARQUIVO2}    entradas.csv
+
+E será possível enviar o arquivo de exportação de dados de entradas
+    Espera o elemento e faz o clique    ${EXPORT_ENVIAR2}
+    Wait Until Element Is Visible    ${EXPORT_SELECIONAR}
+    Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
+
+Dado que o usuário diminuiu estoque em um produto
+    Cadastro de um produto
+    Saida de um produto
+
+E o arquivo de exportação de saídas será gerado
+    Visualiza texto    ${EXPORT_ARQUIVO3}    saidas.csv
+
+E será possível enviar o arquivo de exportação de dados de saídas
+    Espera o elemento e faz o clique    ${EXPORT_ENVIAR3}
+    Wait Until Element Is Visible    ${EXPORT_SELECIONAR}
+    Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
+
+Dado que o usuário adicionou um grupo de produtos
+    Dado que o usuário acessou o Menu
+    Espera o elemento e faz o clique    ${MENU_GRUPO}
+    Espera o elemento e faz o clique    ${GRUPO_ADD}
+    Wait Until Element Is Visible    ${GRUPO_INPUT}
+    Input Text    ${GRUPO_INPUT}    Eletrônicos
+    Click Element    ${GRUPO_SALVAR}
+    Clica para voltar tela 2x
+
+E o arquivo de exportação de grupos será gerado
+    Visualiza texto    ${EXPORT_ARQUIVO4}    grupos.csv
+
+E será possível enviar o arquivo de exportação de dados de grupos
+    Espera o elemento e faz o clique    ${EXPORT_ENVIAR4}
+    Wait Until Element Is Visible    ${EXPORT_SELECIONAR}
+    Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
