@@ -50,3 +50,32 @@ Test Teardown     Teardown
     Então será possível visualizar a mensagem de sucesso
     E o arquivo de exportação de grupos será gerado
     E será possível enviar o arquivo de exportação de dados de grupos
+
+7- Acessar a funcionalidade Importar dados
+    Dado que o usuário acessou o Menu
+    Quando acessar a funcionalidade Importar dados
+    Então será possível visualizar as opções para importar dados
+
+8- Deve ser possível importar dados de Produtos
+    Dado que o usuário exportou dados de produtos
+    Quando acessar a funcionalidade Importar dados
+    E selecionar a opção Restaurar Produtos
+    Então será possível restaurar dados de produtos
+
+9- Deve ser possível importar dados de Entradas
+    Dado que o usuário exportou dados de entradas
+    Quando acessar a funcionalidade Importar dados
+    E selecionar a opção Restaurar Entradas
+    Então será possível restaurar dados de entradas
+
+10- Deve ser possível importar dados de Saídas
+    Dado que o usuário exportou dados de saídas
+    Quando acessar a funcionalidade Importar dados
+    E selecionar a opção Restaurar Saídas
+    Então será possível restaurar dados de saídas
+
+11- Deve ser possível importar dados de Grupo de produtos
+    Dado que o usuário exportou dados de grupos
+    Quando acessar a funcionalidade Importar dados
+    E selecionar a opção Grupo de Produtos
+    Então será possível restaurar dados de grupo de produtos

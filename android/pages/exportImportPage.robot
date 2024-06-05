@@ -32,6 +32,19 @@ ${GRUPO_ADD}                         xpath=//android.widget.Button[@resource-id=
 ${GRUPO_INPUT}                       xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_descricao"]
 ${GRUPO_SALVAR}                      xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_salvar"]
 
+${MENU_IMPORT}                       xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_importar"]
+${IMPORT_TITULO}                     xpath=//android.widget.TextView[@text="Importar dados"]
+${IMPORT_PRODUTOS}                   xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_produtos"]
+${IMPORT_ENTRADAS}                   xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_entradas"]
+${IMPORT_SAIDAS}                     xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_saidas"]
+${IMPORT_GRUPO}                      xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_grupos"]
+${IMPORT_LISTA}                      xpath=//android.widget.LinearLayout[@resource-id="android:id/parentPanel"]
+${IMPORT_ESTOQUE}                    xpath=//android.widget.TextView[@resource-id="android:id/text1" and @text="Estoque"]
+${IMPORT_ARQUIVO1}                   xpath=
+${IMPORT_ARQUIVO2}                   xpath=
+${IMPORT_ARQUIVO3}                   xpath=
+${IMPORT_ARQUIVO4}                   xpath=
+
 *** Keywords ***
 Quando acessar a funcionalidade Exportar dados
     Clica em botão e espera elemento ficar visível    ${MENU_EXPORT}    ${EXPORT_TELA}
@@ -122,9 +135,84 @@ E será possível enviar o arquivo de exportação de dados de grupos
     Wait Until Element Is Visible    ${EXPORT_SELECIONAR}
     #Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
 
+Quando acessar a funcionalidade Importar dados
+    Clica em botão e espera elemento ficar visível    ${MENU_IMPORT}    ${IMPORT_TITULO}
+    Element Should Contain Text    ${IMPORT_TITULO}    Importar dados
+
+Então será possível visualizar as opções para importar dados
+    Verifica se os elementos estão visíveis e habilitados     ${IMPORT_PRODUTOS}    ${IMPORT_ENTRADAS}    ${IMPORT_SAIDAS}    ${IMPORT_GRUPO}
+    Element Should Contain Text    ${IMPORT_PRODUTOS}    RESTAURAR PRODUTOS
+    Element Should Contain Text    ${IMPORT_ENTRADAS}    RESTAURAR ENTRADAS
+    Element Should Contain Text    ${IMPORT_SAIDAS}    RESTAURAR SAÍDAS
+    Element Should Contain Text    ${IMPORT_GRUPO}    GRUPO DE PRODUTOS
+
+Dado que o usuário exportou dados de produtos
+    Dado que o usuário cadastrou um produto no sistema
+    Quando acessar a seção Exportar dados
+    E gerar uma exportação
+    Então será possível visualizar a mensagem de sucesso
+    E o arquivo de exportação de produtos será gerado
+    Press Keycode    4
+
+E selecionar a opção Restaurar Produtos
+    Espera o elemento e faz o clique    ${IMPORT_PRODUTOS}
+
+Então será possível restaurar dados de produtos
+    Wait Until Element Is Visible    ${IMPORT_LISTA}
+    #Espera o elemento e faz o clique    ${IMPORT_ESTOQUE}
+    #Espera o elemento e faz o clique    ${IMPORT_ARQUIVO1}
+
+Dado que o usuário exportou dados de entradas
+    Dado que o usuário adicionou estoque em um produto
+    Quando acessar a seção Exportar dados
+    E gerar uma exportação
+    Então será possível visualizar a mensagem de sucesso
+    E o arquivo de exportação de entradas será gerado
+    Press Keycode    4
+
+E selecionar a opção Restaurar Entradas
+    Espera o elemento e faz o clique    ${IMPORT_ENTRADAS}
+
+Então será possível restaurar dados de entradas
+    Wait Until Element Is Visible    ${IMPORT_LISTA}
+    #Espera o elemento e faz o clique    ${IMPORT_ESTOQUE}
+    #Espera o elemento e faz o clique    ${IMPORT_ARQUIVO2}
+
+Dado que o usuário exportou dados de saídas
+    Dado que o usuário diminuiu estoque em um produto
+    Quando acessar a seção Exportar dados
+    E gerar uma exportação
+    Então será possível visualizar a mensagem de sucesso
+    E o arquivo de exportação de saídas será gerado
+    Press Keycode    4
+
+E selecionar a opção Restaurar Saídas
+    Espera o elemento e faz o clique    ${IMPORT_SAIDAS}
+
+Então será possível restaurar dados de saídas
+    Wait Until Element Is Visible    ${IMPORT_LISTA}
+    #Espera o elemento e faz o clique    ${IMPORT_ESTOQUE}
+    #Espera o elemento e faz o clique    ${IMPORT_ARQUIVO3}
+
+Dado que o usuário exportou dados de grupos
+    Dado que o usuário adicionou um grupo de produtos
+    Quando acessar a funcionalidade Exportar dados
+    E gerar uma exportação
+    Então será possível visualizar a mensagem de sucesso
+    E o arquivo de exportação de grupos será gerado
+    Press Keycode    4
+
+E selecionar a opção Grupo de Produtos
+    Espera o elemento e faz o clique    ${IMPORT_GRUPO}
+
+Então será possível restaurar dados de grupo de produtos
+    Wait Until Element Is Visible    ${IMPORT_LISTA}
+    #Espera o elemento e faz o clique    ${IMPORT_ESTOQUE}
+    #Espera o elemento e faz o clique    ${IMPORT_ARQUIVO4}
+
+
 
 #Ações de cadastro e movimentação de estoque de produto
-
 Cadastro de um produto
     Espera o elemento e faz o clique    ${BTN_NOVO_CADASTRO}
     Input Text    br.com.pztec.estoque:id/txt_codigo    003
