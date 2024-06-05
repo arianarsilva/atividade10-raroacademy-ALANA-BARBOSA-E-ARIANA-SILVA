@@ -121,3 +121,33 @@ E será possível enviar o arquivo de exportação de dados de grupos
     Espera o elemento e faz o clique    ${EXPORT_ENVIAR4}
     Wait Until Element Is Visible    ${EXPORT_SELECIONAR}
     Element Should Contain Text    ${EXPORT_SELECIONAR}    Selecione uma aplicação.
+
+
+#Ações de cadastro e movimentação de estoque de produto
+
+Cadastro de um produto
+    Espera o elemento e faz o clique    ${BTN_NOVO_CADASTRO}
+    Input Text    br.com.pztec.estoque:id/txt_codigo    003
+    Input Text    br.com.pztec.estoque:id/txt_descricao    Teclado Mecânico
+    Input Text    br.com.pztec.estoque:id/txt_unidade    un
+    Input Text    br.com.pztec.estoque:id/txt_quantidade    20
+    Input Text    br.com.pztec.estoque:id/txt_valunit    500
+    Swipe By Percent    50    40    50    05
+    Input Text    br.com.pztec.estoque:id/txt_lote    001
+    Click Element    ${BTN_SALVAR}
+
+Entrada de um produto
+    Espera o elemento e faz o clique    ${BTN_ENTRADA}
+    Wait Until Element Is Visible    ${INPUT_ADICIONA_ESTOQUE}
+    Input Text    ${INPUT_ADICIONA_ESTOQUE}    4
+    Input Text    ${INPUT_MOTIVO}              Entrada no estoque
+    Input Text    ${INPUT_DOC}                 123
+    Espera o elemento e faz o clique    ${BTN_SALVAR2}
+
+Saida de um produto
+    Espera o elemento e faz o clique    ${BTN_SAIDA}
+    Wait Until Element Is Visible    ${INPUT_SAIDA_ESTOQUE}
+    Input Text    ${INPUT_SAIDA_ESTOQUE}       3
+    Input Text    ${INPUT_MOTIVO}              SAÍDA DE ESTOQUE
+    Input Text    ${INPUT_DOC}                 123
+    Espera o elemento e faz o clique    ${BTN_SALVAR2}
