@@ -35,6 +35,7 @@ Dado que o usuário acessou o Menu
 Quando acessar a funcionalidade Relatório
     Click Element    ${MENU_RELATORIO}
     Wait Until Element Is Visible    ${RELATORIO_TELA}
+    Element Should Contain Text    ${RELATORIO_TITULO}    Relatórios
 
 Então será possível visualizar as opções para gerar relatórios
     Verifica se os elementos estão visíveis e habilitados    ${RELATORIO_INVENTARIO}    ${RELATORIO_ENTRADAS}    ${RELATORIO_SAIDAS}

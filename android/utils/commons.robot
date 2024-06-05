@@ -10,6 +10,25 @@ Espera o elemento e faz o clique
     Wait Until Element Is Visible    ${elemento}
     Click Element                    ${elemento}
 
+Clica em botão e espera elemento ficar visível
+    [Arguments]    ${elemento1}    ${elemento2}
+    Click Element                    ${elemento1}
+    Wait Until Element Is Visible    ${elemento2}
+
+Clica em botão e espera elemento desaparecer
+    [Arguments]    ${elemento1}    ${elemento2}
+    Click Element                    ${elemento1}
+    Wait Until Page Does Not Contain Element    ${elemento2}
+
+Clica em botão e verifica toast
+    [Arguments]    ${elemento1}    ${elemento2}
+    Click Element                    ${elemento1}
+    Page Should Contain Element    ${elemento2}
+
+Clica para voltar tela 2x
+    Press Keycode    4
+    Press Keycode    4
+
 Visualiza texto
     [Arguments]                  ${elemento}           ${nome}
     Element Should Be Visible    ${elemento}
