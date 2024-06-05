@@ -6,17 +6,13 @@ Resource    ../utils/config.robot
 
 *** Variables ***
 
-${BTN_NOVO_CADASTRO}                      xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/Button1"]
-${BTN_VALIDADE}                           xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/data"]
-${BTN_SALVAR}                             xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/btn_gravar_assunto"]
-${BTN_DELETAR}                            xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/deletar"]
-${BTN_EDITAR}                             xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/editar"]
-${BTN_ENTRADA}                            xpath=//android.widget.Button[@resource-id="br.com.pztec.estoque:id/entrada"]
-${BTN_SAIDA}                              id=br.com.pztec.estoque:id/saida
-${BTN_DELETAR_SIM}                        xpath=//android.widget.Button[@resource-id="android:id/button1"]
-${BTN_DELETAR_NAO}                        xpath=//android.widget.Button[@resource-id="android:id/button2"]
-${BTN_SALVAR2}                            id=br.com.pztec.estoque:id/btn_salvar
-${BTN_BUSCA}                              id=android:id/search_button
+${INPUT_LOCALIZAR}                        id=android:id/search_src_text
+${INPUT_CODIGO}                           id=br.com.pztec.estoque:id/txt_codigo
+${INPUT_DESCRICAO}                        id=br.com.pztec.estoque:id/txt_descricao
+${INPUT_UNIDADE}                          id=br.com.pztec.estoque:id/txt_unidade
+${INPUT_QUANTIDADE}                       id=br.com.pztec.estoque:id/txt_quantidade
+${INPUT_VAL_UNIT}                         id=br.com.pztec.estoque:id/txt_valunit
+${INPUT_LOTE}                             id=br.com.pztec.estoque:id/txt_lote
 
 ${TXT_CONFIRMA_EXCLUSAO}                  xpath=//android.widget.TextView[contains(@text,"Confirma exclusão?")]  
 ${TXT_CADASTRO_CODIGO}                    xpath=//android.widget.TextView[@text="Código"]
@@ -29,38 +25,41 @@ ${TXT_CADASTRO_DE_PRODUTOS}               xpath=//android.widget.TextView[@text=
 ${TXT_ID}                                 xpath=//android.widget.TextView[@text="ID"]
 ${TXT_CODIGO}                             xpath=//android.widget.TextView[@text="Código"]
 ${TXT_DESCRICAO}                          xpath=//android.widget.TextView[@text="Descrição"]
-${TXT_QUANTIDADE}                         xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/txt_quantidade"]
+${TXT_QUANTIDADE}                         id=br.com.pztec.estoque:id/txt_quantidade
 
-${INPUT_LOCALIZAR}                        id=android:id/search_src_text
-${INPUT_CODIGO}                           xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_codigo"]
-${INPUT_DESCRICAO}                        xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_descricao"]
-${INPUT_UNIDADE}                          xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_unidade"]
-${INPUT_QUANTIDADE}                       xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_quantidade"]
-${INPUT_VAL_UNIT}                         xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_valunit"]
-${INPUT_LOTE}                             xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_lote"]
+${BTN_NOVO_CADASTRO}                      id=br.com.pztec.estoque:id/Button1
+${BTN_SALVAR}                             id=br.com.pztec.estoque:id/btn_gravar_assunto
+${BTN_DELETAR}                            id=br.com.pztec.estoque:id/deletar
+${BTN_EDITAR}                             id=br.com.pztec.estoque:id/editar
+${BTN_ENTRADA}                            id=br.com.pztec.estoque:id/entrada
+${BTN_SAIDA}                              id=br.com.pztec.estoque:id/saida
+${BTN_DELETAR_SIM}                        id=android:id/button1
+${BTN_DELETAR_NAO}                        id=android:id/button2
+${BTN_SALVAR2}                            id=br.com.pztec.estoque:id/btn_salvar
+${BTN_BUSCA}                              id=android:id/search_button
 
 ${INPUT_SAIDA_ESTOQUE}                    id=br.com.pztec.estoque:id/txt_qtdsaida
 ${INPUT_ADICIONA_ESTOQUE}                 xpath=//android.widget.EditText[@resource-id="br.com.pztec.estoque:id/txt_qtdentrada"]
 ${INPUT_MOTIVO}                           id=br.com.pztec.estoque:id/txt_motivo
 ${INPUT_DOC}                              id=br.com.pztec.estoque:id/txt_referencia
-${PRODUTOS_PAGE}                          xpath=//android.widget.LinearLayout[@resource-id="br.com.pztec.estoque:id/todoObjeto"]
-${FIELD_DESCRICAO}                        xpath=//android.widget.TextView[@resource-id="br.com.pztec.estoque:id/txt_descricao"]
+${PRODUTOS_PAGE}                          id=br.com.pztec.estoque:id/todoObjeto
+${FIELD_DESCRICAO}                        id=br.com.pztec.estoque:id/txt_descricao
 
 
 *** Keywords ***
 Cadastro de vários produtos
     [Arguments]    ${codigo}    ${descricao}    ${unidade}    ${quantidade}    ${valUnit}    ${lote}    
-    Wait Until Element Is Visible      br.com.pztec.estoque:id/Button1
-    Click Element                      br.com.pztec.estoque:id/Button1
-    Wait Until Element Is Visible      br.com.pztec.estoque:id/txt_descricao
-    Input Text                         br.com.pztec.estoque:id/txt_codigo         ${codigo}
-    Input Text                         br.com.pztec.estoque:id/txt_descricao      ${descricao}
-    Input Text                         br.com.pztec.estoque:id/txt_unidade        ${unidade}
-    Input Text                         br.com.pztec.estoque:id/txt_quantidade     ${quantidade}
-    Input Text                         br.com.pztec.estoque:id/txt_valunit        ${valUnit}
-    Input Text                         br.com.pztec.estoque:id/txt_lote           ${lote}
+    Wait Until Element Is Visible      ${BTN_NOVO_CADASTRO}
+    Click Element                      ${BTN_NOVO_CADASTRO}
+    Wait Until Element Is Visible      ${INPUT_DESCRICAO}
+    Input Text                         ${INPUT_CODIGO}          ${codigo}
+    Input Text                         ${INPUT_DESCRICAO}       ${descricao}
+    Input Text                         ${INPUT_UNIDADE}         ${unidade}
+    Input Text                         ${INPUT_QUANTIDADE}      ${quantidade}
+    Input Text                         ${INPUT_VAL_UNIT}        ${valUnit}
+    Input Text                         ${INPUT_LOTE}            ${lote}
     Click Element                      ${BTN_SALVAR}
-    Wait Until Element Is Visible      android:id/search_button
+    Wait Until Element Is Visible      ${BTN_BUSCA}
     Element Should Contain Text        //android.widget.TextView[@text='${descricao}']    ${descricao}
 
 Dado que o usuário está na tela inicial
