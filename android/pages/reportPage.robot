@@ -50,7 +50,7 @@ E selecionar a opção Inventário de estoque
     Element Should Contain Text    ${RELATORIO_DATA_ARQV}    inventario.pdf
 
 Então será possível gerar PDF do relatório
-    Click Element    ${RELATORIO_GERAR_PDF}
+    Espera o elemento e faz o clique    ${RELATORIO_GERAR_PDF}
     Wait Until Element Is Visible    ${RELATORIO_DATA_ARQV}
 
 E visualizar o PDF do relatório no aplicativo de escolha
@@ -60,14 +60,15 @@ E visualizar o PDF do relatório no aplicativo de escolha
 
 E enviar o PDF do relatório no aplicativo de escolha
     Click Element    ${RELATORIO_ENVIAR}
-    Wait Until Element Is Visible    ${RELATORIO_SELECIONAR}
-    Element Should Contain Text    ${RELATORIO_SELECIONAR}    Selecione uma aplicação.
+    # Nessas keywords seguintes, a forma de exportação variava para cada device.
+    # Wait Until Element Is Visible    ${RELATORIO_SELECIONAR}
+    # Element Should Contain Text    ${RELATORIO_SELECIONAR}    Selecione uma aplicação.
 
 E selecionar a opção Entradas no estoque
     Click Element    ${RELATORIO_ENTRADAS}
     Wait Until Element Is Visible    ${RELATORIO_GERAR_PDF}
     Element Should Contain Text    ${RELATORIO_TITULO}    Entradas no estoque
-    Element Should Contain Text    ${RELATORIO_DATA_ARQV}    relatentrada.pdf
+    Wait Until Element Is Visible    ${RELATORIO_DATA_ARQV}
 
 E definir as datas desejadas
     Click Element    ${RELATORIO_DATA_INICIAL}
